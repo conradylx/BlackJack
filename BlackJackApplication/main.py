@@ -1,18 +1,25 @@
-from BlackJackApplication.Cards import Card
-from BlackJackApplication.Positionable_Card import Positionable_Card
-from BlackJackApplication.Unprintable_card import Unprintable_card
+import Games
+from BlackJackApplication.BJ_Game import BJ_Game
+
+
+def main():
+    print('\t\tWelcome to Blackjack!')
+    names = []
+    number = Games.ask_number('Enter number of players (1-7): ', low=1, high=8)
+
+    for i in range(number):
+        name = input('Enter player name: ')
+        names.append(name)
+    print()
+
+    game = BJ_Game(names)
+
+    again = None
+
+    while again != 'n':
+        game.play()
+        again = Games.ask_yes_or_no('\nDo you want play again? ')
+
 
 if __name__ == '__main__':
-    card1 = Card('A', '♥')
-    card2 = Unprintable_card('A', '♠')
-    card3 = Positionable_Card('A', '♦')
-    print('Show objects of class Card:')
-    print(card1)
-    print('Show unprintable card:')
-    print(card2)
-    print('Show positionable card:')
-    print(card3)
-    print('Change state of positionable card:')
-    card3.flip()
-    print('Show positionable card')
-    print(card3)
+    main()

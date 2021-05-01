@@ -1,9 +1,7 @@
-from dataclasses import dataclass
-
 from BlackJackApplication.Cards import Card
 
 
-class Hand:
+class Hand(object):
     def __init__(self):
         self.cards = []
 
@@ -11,9 +9,9 @@ class Hand:
         if self.cards:
             rep = ""
             for card in self.cards:
-                rep += str(card) + " "
+                rep += str(card) + "\t"
         else:
-            rep = "<EMPTY>"
+            rep = "<empty>"
         return rep
 
     def clear(self):
@@ -53,8 +51,8 @@ if __name__ == '__main__':
     my_hand.give(card1, your_hand)
     my_hand.give(card2, your_hand)
     print('Show two first cards given to you.')
-    print('Your hand:\n', your_hand)
-    print('My hand:\n', my_hand)
+    print('Your hand: ', your_hand)
+    print('My hand: ', my_hand)
     my_hand.clear()
     print('My hand after taking all the cards:')
     print(my_hand)

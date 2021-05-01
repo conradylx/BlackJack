@@ -5,13 +5,13 @@ from Hand import Hand
 
 
 class Deck(Hand):
-
     def populate(self):
         for suit in Card.SUITS:
             for rank in Card.RANKS:
                 self.add(Card(rank, suit))
 
     def shuffle(self):
+        import random
         random.shuffle(self.cards)
 
     def deal(self, hands, per_hand=1):
@@ -21,7 +21,7 @@ class Deck(Hand):
                     top_card = self.cards[0]
                     self.give(top_card, hand)
                 else:
-                    print('Cannot deal the cards. No cards in the deck.')
+                    print("Cannot continue, out of cards")
 
 
 if __name__ == '__main__':
