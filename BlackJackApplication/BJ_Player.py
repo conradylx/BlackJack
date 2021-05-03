@@ -9,15 +9,17 @@ class BJ_Player(BJ_Hand):
         self.bet = bet
         self.money = money
 
-    def set_bet_amount(self):
+    def set_betting_amount(self):
         while True:
             try:
-                self.bet = int(input('How much money do you want to bet?: '))
+                self.bet = int(
+                    input(f"{self.name} how much is your bet? (1-{self.money}): ")
+                )
                 if self.bet > self.money:
-                    print('You dont have that much money')
+                    print("You don't have enough funds!")
                     continue
             except ValueError:
-                print("You need to enter numeric format of amount")
+                print("You need to enter a valid number!")
                 continue
             else:
                 break
@@ -40,18 +42,3 @@ class BJ_Player(BJ_Hand):
 
     def push(self):
         print(self.name, 'draws')
-
-    def set_betting_amount(self):
-        while True:
-            try:
-                self.bet = int(
-                    input(f"{self.name} how much is your bet? (1-{self.money}): ")
-                )
-                if self.bet > self.money:
-                    print("You don't have enough funds!")
-                    continue
-            except ValueError:
-                print("You need to enter a valid number!")
-                continue
-            else:
-                break

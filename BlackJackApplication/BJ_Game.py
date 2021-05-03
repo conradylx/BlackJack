@@ -62,6 +62,10 @@ class BJ_Game(object):
                     player.win(player.bet)
             else:
                 for player in self.still_playing:
+                    if player.money == 0:
+                        self.players.remove(player)
+                        self.still_playing.remove(player)
+                        print(f'{player.name} is out due to lack of money.')
                     if player.total > self.dealer.total:
                         player.win(player.bet)
                     elif player.total < self.dealer.total:
