@@ -40,4 +40,4 @@ class BJ_Hand(Hand):
 
 if __name__ == '__main__':
     hand = BJ_Hand('Dealer')
-    print(hand.__str__())
+    print(hand)

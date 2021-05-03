@@ -14,6 +14,10 @@ class BJ_Game(object):
         self.dealer = BJ_Dealer('Dealer')
         self.deck = BJ_Deck()
         self.deck.populate()
+        if self.deck.populate() != 52:
+            print("Deck doesn't contain 52 cards.")
+            quit()
+
         self.deck.shuffle()
 
     @property
@@ -32,6 +36,9 @@ class BJ_Game(object):
                 player.bust()
 
     def play(self):
+        for player in self.players:
+            if not player.is_busted():
+                player.set_betting_amount()
         # noinspection PyTypeChecker
         self.deck.deal(self.players + [self.dealer], per_hand=2)
         self.dealer.flip_first_card()
@@ -52,16 +59,18 @@ class BJ_Game(object):
 
             if self.dealer.is_busted():
                 for player in self.still_playing:
-                    player.win()
+                    player.win(player.bet)
             else:
                 for player in self.still_playing:
                     if player.total > self.dealer.total:
-                        player.win()
+                        player.win(player.bet)
                     elif player.total < self.dealer.total:
-                        player.lose()
+                        player.lose(player.bet)
                     else:
                         player.push()
                 for player in self.players:
                     player.clear()
 
                 self.dealer.clear()
+        for player in self.players:
+            print(f'Total amount of {player.name}: ', player.money)
