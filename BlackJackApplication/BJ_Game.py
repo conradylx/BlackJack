@@ -35,9 +35,18 @@ class BJ_Game(object):
             if player.is_busted():
                 player.bust()
 
+    def new_deck(self):
+        self.deck = BJ_Deck()
+        self.deck.populate()
+        self.deck.shuffle()
+
     def play(self):
         for player in self.players:
-            if not player.is_busted():
+            print(player.money)
+            if player.money == 0:
+                self.players.remove(player)
+                print(self.players)
+            else:
                 player.set_betting_amount()
         # noinspection PyTypeChecker
         self.deck.deal(self.players + [self.dealer], per_hand=2)

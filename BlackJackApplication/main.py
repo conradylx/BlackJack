@@ -1,5 +1,6 @@
 import Games
 from BlackJackApplication.BJ_Game import BJ_Game
+from BlackJackApplication.Deck import Deck
 
 
 def main():
@@ -18,6 +19,7 @@ def main():
 
     while again != 'n':
         game.play()
+        game.new_deck()
         again = Games.ask_yes_or_no('\nDo you want play again? ')
 
 
